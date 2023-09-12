@@ -17,5 +17,13 @@ namespace DatabaseDomain.Players
         {
             TotalPlayTime.Add(timeSpan);
         }
+
+        public TimeSpan TotalPlayTimeInTimeSpan
+        {
+            get
+            {
+                return DateTimeConverter.ConvertToTimeSpan(TotalPlayTime);
+            }
+        }
     }
 }

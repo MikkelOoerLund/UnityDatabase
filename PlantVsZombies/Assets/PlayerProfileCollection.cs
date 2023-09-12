@@ -23,31 +23,6 @@ public class PlayerProfileCollection : MonoBehaviour
 
     private void InitializeRepository()
     {
-        Test test = new Test();
-
-        test.PlayerProfiles();
-
-        Debug.LogError("Break");
-
-        //string connectionString = ConnectionStringFactory.CreateConnectionStringToDatabase("DESKTOP-3NHSSF9", "PlantVsZombies");
-
-        //PlayerDatabase playerDatabase = new PlayerDatabase(connectionString);
-
-        //Debug.LogError("Break");
-
-
-        //using (PlayerProfileRepository repository = new PlayerProfileRepository(playerDatabase))
-        //{
-        //    repository.Add(new PlayerProfile());
-
-        //    repository.Update();
-
-        //    foreach (var item in repository.GetAll().ToArray())
-        //    {
-        //        Debug.Log($"ID: {item.Id}, TotalPlayTime: {item.TotalPlayTime}");
-        //    }
-
-        //}
     }
 
 
