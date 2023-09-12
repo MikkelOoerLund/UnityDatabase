@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2563005993655486980}
   - component: {fileID: 7172826692953005693}
   - component: {fileID: 1358542163602944723}
+  - component: {fileID: 5648697764276035309}
   m_Layer: 5
   m_Name: LoadGameButton
   m_TagString: Untagged
@@ -134,6 +135,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5648697764276035309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788619461402363212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb91f01e4ab20a43b19bf054aa17a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMesh: {fileID: 4548551089504813365}
 --- !u!1 &6138913396002878808
 GameObject:
   m_ObjectHideFlags: 0

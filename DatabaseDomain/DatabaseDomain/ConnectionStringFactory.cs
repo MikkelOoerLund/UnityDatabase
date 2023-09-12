@@ -9,11 +9,11 @@ namespace DatabaseDomain
 {
     public class ConnectionStringFactory
     {
-        public static string CreateConnectionStringToDatabase(string database)
+        public static string CreateConnectionStringToDatabase(string dataSource, string database)
         {
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = "DESKTOP-3NHSSF9",
+                DataSource = dataSource,
                 InitialCatalog = database,
                 IntegratedSecurity = true,
             };

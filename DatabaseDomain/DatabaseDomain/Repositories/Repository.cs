@@ -64,8 +64,10 @@ namespace DatabaseDomain
 
         public void Dispose()
         {
+            _database.SaveChanges();
             _database.Dispose();
         }
+
 
         protected DbSet<TEntity> Entities => _entities;
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridSpawner : MonoBehaviour
@@ -9,25 +10,28 @@ public class GridSpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject _spawnPrefab;
 
-    [Header("Settings")]
-    [SerializeField] private float _rowGap;
-    [SerializeField] private float _collumGap;
+    [Header("InBetweenSpace")]
+    [SerializeField] [Range(1, 500)] private float _rowGap;
+    [SerializeField] [Range(1, 500)] private float _collumGap;
 
-    [SerializeField] private int _rowCount = 1;
-    [SerializeField] private int _collumCount = 1;
+    [Header("Size")]
+    [SerializeField] [Range(1, 10)] private int _rowCount;
+    [SerializeField] [Range(1, 10)] private int _collumCount;
 
-    [SerializeField] private int _spawnCount;
-
+    [Header("Offset")]
     [SerializeField] private Vector2 _spawnOffset;
 
+    private GameObject[,] _grid;
 
-    private void Awake()
-    {
-        SpawnGameObjects();
-    }
+
+
+
+
 
     private void SpawnGameObjects()
     {
+        _grid = new GameObject[_rowCount, _collumCount];
+
         float height = _rowGap * (_rowCount - 1);
         float halfHeight = height / 2;
 
@@ -48,6 +52,8 @@ public class GridSpawner : MonoBehaviour
                 instance.transform.position = spawnPosition;
 
                 horizontalSpawnPosition += _collumGap;
+
+                _grid[rowIndex, collumIndex] = instance;
             }
 
             verticalSpawnPosition -= _rowGap;
@@ -79,10 +85,6 @@ public class GridSpawner : MonoBehaviour
 
             verticalSpawnPosition -= _rowGap;
         }
-
-
-
-        //Gizmos.DrawWireSphere((Vector2)transform.position + _spawnOffset, _radius);
     }
 
 
@@ -112,4 +114,18 @@ public class GridSpawner : MonoBehaviour
 
 
     private Vector2 Position => (Vector2)transform.position;
+
+
+    public GameObject[,] Grid
+    {
+        get
+        {
+            if (_grid == null)
+            {
+                SpawnGameObjects();
+            }
+
+            return _grid;
+        }
+    }
 }

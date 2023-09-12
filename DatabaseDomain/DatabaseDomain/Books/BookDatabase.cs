@@ -23,7 +23,7 @@ namespace DatabaseDomain
             {
                 if (_instance == null)
                 {
-                    string connectionString = ConnectionStringFactory.CreateConnectionStringToDatabase("DatabaseFirstExample");
+                    string connectionString = ConnectionStringFactory.CreateConnectionStringToDatabase("DESKTOP-3NHSSF9", "DatabaseFirstExample");
                     _instance = new BookDatabase(connectionString);
                 }
 
