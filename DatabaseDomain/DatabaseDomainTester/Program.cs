@@ -13,24 +13,29 @@ using System.Threading.Tasks;
 
 namespace DatabaseDomainTester
 {
-    internal abstract class RequestHandler
+    internal interface IRequestHandler
     {
-        public abstract object HandleRequest<T>(T request);
+        object HandleRequest<T>(T request);
     }
 
-    internal class RequestHandler<T> : RequestHandler
+    internal interface IRequestHandler<T> : IRequestHandler
     {
-        public override object HandleRequest<T>(T request)
+        new object HandleRequest<T>(T request);
+    }
+
+    internal class GenereicRequestHandler<T> : IRequestHandler<T>
+    {
+        public object HandleRequest<T>(T request)
         {
-            Console.WriteLine(request);
+            Console.WriteLine($"Handling {typeof(T)}");
             return null;
         }
-
     }
 
-    internal class RequestPublisher : Dictionary<Type, List<RequestHandler>>
+
+    internal class RequestPublisher : Dictionary<Type, List<IRequestHandler>>
     {
-        public void Add<T>(RequestHandler<T> requestHandler)
+        public void Add<T>(IRequestHandler<T> requestHandler)
         {
             Type type = typeof(T);
 
@@ -40,7 +45,7 @@ namespace DatabaseDomainTester
                 return;
             }
 
-            this[type] = new List<RequestHandler>()
+            this[type] = new List<IRequestHandler>()
             {
                 requestHandler,
             };
@@ -64,8 +69,8 @@ namespace DatabaseDomainTester
     {
         static void Main(string[] args)
         {
-            RequestHandler<int> requestHandler = new RequestHandler<int>();
-            RequestHandler<string> stringRequestHandler = new RequestHandler<string>();
+            GenereicRequestHandler<int> requestHandler = new GenereicRequestHandler<int>();
+            GenereicRequestHandler<string> stringRequestHandler = new GenereicRequestHandler<string>();
 
             RequestPublisher requestPublisher = new RequestPublisher
             {
