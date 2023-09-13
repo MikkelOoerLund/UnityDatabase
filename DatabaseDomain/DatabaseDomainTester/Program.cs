@@ -1,6 +1,5 @@
 ﻿using DatabaseDomain;
 using DatabaseDomain.Network;
-using DatabaseDomain.Players;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -69,39 +68,30 @@ namespace DatabaseDomainTester
     {
         static void Main(string[] args)
         {
-            GenereicRequestHandler<int> requestHandler = new GenereicRequestHandler<int>();
-            GenereicRequestHandler<string> stringRequestHandler = new GenereicRequestHandler<string>();
-
-            RequestPublisher requestPublisher = new RequestPublisher
+            var builder = new SqlConnectionStringBuilder
             {
-                requestHandler,
-                stringRequestHandler,
+                DataSource = "DESKTOP-3NHSSF9",
+                InitialCatalog = "PlantsVsZombies",
+                IntegratedSecurity = true,
             };
 
+            var connectionString = builder.ConnectionString;
 
-            requestPublisher.PublishRequest("StringRequest");
-
-            //TCPClient client = new TCPClient(12000);
-
-            //client.Connect();
-
-            //DatabaseRequest databaseRequest = new DatabaseRequest()
-            //{
-            //    EntityTarget = EntityTarget.PlayerProfile,
-            //    QueryTask = QueryTask.GetAll,
-            //};
-
-            //client.SendRequest(databaseRequest);
-            //PlayerProfile[] playerProfiles = client.RecieveResponse<PlayerProfile[]>();
+            var databaseContext = new PlantVsZombiesDbContext(connectionString);
+            databaseContext.Database.Initialize(force: true);
 
 
-            //foreach (var item in playerProfiles)
-            //{
-            //    Console.WriteLine($"Id: {item.Id}, TotalPlayTime: {item.TotalPlayTimeInTimeSpan}");
-            //}
+            var plantRepository = new PlantRepository(databaseContext);
+            var playerRepository = new PlayerRepository(databaseContext);
+            var zombieRepository = new ZombieRepository(databaseContext);
+            var plantSetRepository = new PlantSetRepository(databaseContext);
+            var plantSetPlantLinkRepository = new PlantSetPlantLinkRepository(databaseContext);
 
+            //plantRepository.GetAll();
+            //playerRepository.GetAll();
+
+            Console.WriteLine("Press any key to close the terminal...");
             Console.ReadKey();
-
         }
     }
 }
