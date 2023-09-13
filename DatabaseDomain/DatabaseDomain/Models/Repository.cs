@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
@@ -57,9 +58,18 @@ namespace DatabaseDomain
             _entities.RemoveRange(entities);
         }
 
-        public void Dispose()
+        public void Update(TEntity entity)
+        {
+            _entities.AddOrUpdate(entity);
+        }
+
+        public void SaveChanges()
         {
             _database.SaveChanges();
+        }
+
+        public void Dispose()
+        {
             _database.Dispose();
         }
 

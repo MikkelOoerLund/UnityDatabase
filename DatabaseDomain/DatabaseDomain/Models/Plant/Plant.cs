@@ -14,10 +14,8 @@ namespace DatabaseDomain
 
         [Key] public int PlantId { get; set; }
 
-        [Required] public int SunCost { get; set; }
-
-        [Required] public int FireCooldown { get; set; }
-        [Required] public int RechargeCooldown { get; set; }
+        [Required] public int Cost { get; set; }
+        [Required] public int Recharge { get; set; }
 
         [Required] public string Name { get; set; }
         [Required] public string Description { get; set; }
