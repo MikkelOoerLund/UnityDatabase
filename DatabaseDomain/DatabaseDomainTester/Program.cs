@@ -1,5 +1,7 @@
 ﻿using DatabaseDomain;
 using DatabaseDomain.Network;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -63,11 +65,41 @@ namespace DatabaseDomainTester
 
     }
 
+    internal class Message
+    {
+        public string Text { get; set; }
+
+        public Message(string text)
+        {
+            Text =  text;
+        }
+    }
+
+    internal class Publisher
+    {
+        private Message _message;
+
+        public Publisher(Message message)
+        {
+            _message = message;
+        }
+
+        public void Publish()
+        {
+            Console.WriteLine(_message.Text);
+        }
+
+    }
+
 
     internal class Program
     {
         static void Main(string[] args)
         {
+            //var databaseContext = new PlantVsZombiesDbContext(connectionString);
+            //databaseContext.Database.Initialize(force: true);
+
+
             var builder = new SqlConnectionStringBuilder
             {
                 DataSource = "DESKTOP-3NHSSF9",
@@ -77,21 +109,28 @@ namespace DatabaseDomainTester
 
             var connectionString = builder.ConnectionString;
 
-            var databaseContext = new PlantVsZombiesDbContext(connectionString);
-            databaseContext.Database.Initialize(force: true);
+            var hostApplicationBuilder = Host.CreateApplicationBuilder(args);
 
+            var services = hostApplicationBuilder.Services;
+            services.AddTransient<PlantRepository>();
+            services.AddTransient<PlayerRepository>();
+            services.AddTransient<ZombieRepository>();
+            services.AddTransient<PlantSetPlantLinkRepository>();
+            services.AddSingleton(typeof(DbContext), provider => new PlantVsZombiesDbContext(connectionString));
 
-            var plantRepository = new PlantRepository(databaseContext);
-            var playerRepository = new PlayerRepository(databaseContext);
-            var zombieRepository = new ZombieRepository(databaseContext);
-            var plantSetRepository = new PlantSetRepository(databaseContext);
-            var plantSetPlantLinkRepository = new PlantSetPlantLinkRepository(databaseContext);
+            var host = hostApplicationBuilder.Build();
 
-            //plantRepository.GetAll();
-            //playerRepository.GetAll();
+            var hostServices = host.Services;
+            var serviceScope = hostServices.CreateScope();
+            var serviceProvider = serviceScope.ServiceProvider;
+
+            var plantRepository = serviceProvider.GetRequiredService<PlantRepository>();
+            plantRepository.GetAll();
+
 
             Console.WriteLine("Press any key to close the terminal...");
             Console.ReadKey();
         }
     }
 }
+
