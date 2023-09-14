@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Observer
+namespace DatabaseDomain
 {
-    public interface IRequestHandler
+    public enum EntityType
     {
-        object HandleRequest(string request);
+        Area,
+        Plant,
+        Zombie,
     }
 }

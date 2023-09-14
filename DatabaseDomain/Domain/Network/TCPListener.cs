@@ -23,7 +23,7 @@ namespace Domain.Network
             _listener = new TcpListener(IPAddress.Any, port);
         }
 
-        private string GetResponse<T>(T request)
+        private string GetResponse(string request)
         {
             if (_publisher != null)
             {

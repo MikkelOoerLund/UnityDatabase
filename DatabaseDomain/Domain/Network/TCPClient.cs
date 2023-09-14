@@ -31,6 +31,18 @@ namespace Domain.Network
             _client = new TcpClient();
         }
 
+        public void WaitUntilConnected()
+        {
+            try
+            {
+                _client = new TcpClient();
+                _client.Connect(_ipAddress, _port);
+            }
+            catch (SocketException)
+            {
+                WaitUntilConnected();
+            }
+        }
 
         public void Connect()
         {

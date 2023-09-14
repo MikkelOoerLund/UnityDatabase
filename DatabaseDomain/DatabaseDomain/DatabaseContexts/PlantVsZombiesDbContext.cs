@@ -15,24 +15,6 @@ namespace DatabaseDomain
             Database.SetInitializer(new CreateDatabaseIfNotExists<PlantVsZombiesDbContext>());
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Area>()
-               .HasIndex(a => a.Name)
-               .IsUnique();
-
-            modelBuilder.Entity<Plant>()
-             .HasIndex(a => a.Name)
-             .IsUnique();
-
-            modelBuilder.Entity<Zombie>()
-             .HasIndex(a => a.Name)
-             .IsUnique();
-        }
-
-
         public DbSet<Area> Areas { get; set; }
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Player> Players { get; set; }

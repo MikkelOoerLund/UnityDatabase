@@ -1,5 +1,6 @@
 ﻿using DatabaseDomain;
 using Domain.Network;
+using Domain.Observer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
@@ -37,8 +38,21 @@ namespace DatabaseServer
 
             CreateDatabaseDataIfNotExist(serviceProvider);
 
+            var areaRepository = serviceProvider.GetRequiredService<AreaRepository>();
 
-            Console.WriteLine("Press any key to close the console...");
+            var requestPublisher = new RequestPublisher()
+            {
+                new AreaDatabaseRequestHandler(areaRepository)
+            };
+
+            var listener = new TCPListener(12000, requestPublisher);
+
+            listener.Start();
+            listener.AcceptClientsAsync();
+
+
+
+            Console.WriteLine("Server is started press any key to close the terminal...");
             Console.ReadLine();
 
         }

@@ -6,30 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Observer
 {
-    public class RequestPublisher : Dictionary<Type, List<IRequestHandler>>
+    public class RequestPublisher : List<IRequestHandler>
     {
-        public void Add<T>(IRequestHandler<T> requestHandler)
+   
+
+        public object PublishRequest(string request)
         {
-            Type type = typeof(T);
-
-            if (ContainsKey(type))
-            {
-                this[type].Add(requestHandler);
-                return;
-            }
-
-            this[type] = new List<IRequestHandler>()
-            {
-                requestHandler,
-            };
-
-        }
-
-        public object PublishRequest<T>(T request)
-        {
-            Type type = typeof(T);
-
-            foreach (var requestHandler in this[type])
+            foreach (var requestHandler in this)
             {
                var response = requestHandler.HandleRequest(request);
                if (response != null) return response;

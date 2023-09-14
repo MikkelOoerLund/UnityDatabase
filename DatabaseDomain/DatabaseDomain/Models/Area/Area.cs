@@ -19,5 +19,14 @@ namespace DatabaseDomain
 
         public int LevelCount { get; set; }
         public int Difficulty { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"AreaId: {AreaId}\n" +
+                $"Name: {Name}\n" +
+                $"LevelCount: {LevelCount}\n" +
+                $"Difficulty: {Difficulty}\n";
+        }
     }
 }
