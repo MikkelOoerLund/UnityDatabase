@@ -8,7 +8,7 @@ namespace DatabaseDomain
 {
     public enum QueryTask
     {
-        GetEntityWithId,
-        GetEntityWithName,
+        GetAll,
+        GetWithId,
     }
 }

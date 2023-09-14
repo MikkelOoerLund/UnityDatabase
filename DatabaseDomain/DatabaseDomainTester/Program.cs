@@ -20,22 +20,16 @@ namespace DatabaseDomainTester
         static void Main(string[] args)
         {
             TCPClient client = new TCPClient(12000);
-
             client.WaitUntilConnected();
 
-            int id = 1;
+            var areaDatabaseClient = new TCPDatabaseClient<Area>(client, new DatabaseRequestFactory());
 
-            var databaseRequest = new DatabaseRequest<int>()
-            {
-                QueryTask = QueryTask.GetEntityWithId,
-                EntityType = EntityType.Area,
-                Data = id,
-            };
+            Area area = areaDatabaseClient.GetEntityWithId(1);
 
-            client.SendRequest(databaseRequest);
-            var response = client.RecieveResponse<Area>();
 
-            Console.WriteLine(response);
+
+            Console.WriteLine(area);
+
             Console.ReadKey();
         }
     }

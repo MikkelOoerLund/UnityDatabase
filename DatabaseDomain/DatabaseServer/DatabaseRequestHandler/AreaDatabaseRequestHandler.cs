@@ -20,12 +20,31 @@ namespace DatabaseServer
 
         public object HandleRequest(string request)
         {
-            var databaseRequest = JsonConvert.DeserializeObject<DatabaseRequest<int>>(request);
+            var databaseRequest = JsonConvert.DeserializeObject<DatabaseRequest>(request);
             if (databaseRequest == null) return null;
-            var id = databaseRequest.Data;
+            if (databaseRequest.Type != typeof(Area)) return null;
 
-            return _areaRepository.Get(id);
+            var data = databaseRequest.Data;
+            var id = int.Parse(data);
+
+            var response = _areaRepository.Get(id);
+
+            Console.WriteLine(response);
+
+            switch (databaseRequest.QueryTask)
+            {
+                case QueryTask.GetWithId: return response;
+                //case QueryTask.GetEntityWithName: return _areaRepository.GetAreaWithName(entity.Name);
+
+
+                default: throw new Exception();
+            }
+
+            throw new Exception();
         }
+
+    
+
 
    
     }

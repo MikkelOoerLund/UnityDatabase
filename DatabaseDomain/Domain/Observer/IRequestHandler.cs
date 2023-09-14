@@ -10,4 +10,9 @@ namespace Domain.Observer
     {
         object HandleRequest(string request);
     }
+
+    public interface IRequestHandler<T>
+    {
+        object HandleRequest(T request);
+    }
 }

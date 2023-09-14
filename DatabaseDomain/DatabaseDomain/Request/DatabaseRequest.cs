@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace DatabaseDomain
 {
-    public class DatabaseRequest<TData>
+    public class DatabaseRequest
     {
         public QueryTask QueryTask { get; set; }
-        public EntityType EntityType { get; set; }
-
-        public TData Data { get; set; }
+        public Type Type { get; set; }
+        public string Data { get; set; }
     }
 
 

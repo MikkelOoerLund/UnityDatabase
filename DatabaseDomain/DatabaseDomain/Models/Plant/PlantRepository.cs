@@ -14,11 +14,9 @@ namespace DatabaseDomain
         {
         }
 
-        public Plant GetPlantWithName(PlantName plantName)
+        public Plant GetPlantWithName(string name)
         {
-            string plantNameString = plantName.ToString();
-            string spaceBeforeUpperCaseString = StringHelper.InsertSpaceBeforeUppercase(plantNameString);
-            return First(x => x.Name == spaceBeforeUpperCaseString);
+            return First(x => x.Name.Contains(name));
         }
 
     }

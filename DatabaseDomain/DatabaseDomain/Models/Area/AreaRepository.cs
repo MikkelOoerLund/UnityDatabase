@@ -12,5 +12,10 @@ namespace DatabaseDomain
         public AreaRepository(DbContext database) : base(database)
         {
         }
+
+        public Area GetAreaWithName(string name)
+        {
+            return First(x => x.Name.Contains(name));
+        }
     }
 }
