@@ -27,9 +27,11 @@ namespace DatabaseDomain
             return this;
         }
 
-        public PlayerBuilder SetCurrentWorld(string currentWorld)
+
+        public PlayerBuilder SetArea(Area area)
         {
-            _player.AreaId = currentWorld;
+            _player.AreaId = area.AreaId;
+            _player.Area = area;
             return this;
         }
 
