@@ -11,13 +11,18 @@ namespace DatabaseDomain
     [Table("Plant")]
     public class Plant
     {
-
         [Key] public int PlantId { get; set; }
 
-        [Required] public int Cost { get; set; }
-        [Required] public int Recharge { get; set; }
+        [MaxLength(450)]
+        [Index(IsUnique = true)] 
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        [Required] public string Name { get; set; }
-        [Required] public string Description { get; set; }
+        public int Cost { get; set; }
+        public int Damage { get; set; }
+        public int Recharge { get; set; }
+
+        public string Range { get; set; }
+        public string Toughness { get; set; }
     }
 }

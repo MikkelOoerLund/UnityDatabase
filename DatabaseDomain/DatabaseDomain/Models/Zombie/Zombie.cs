@@ -12,10 +12,17 @@ namespace DatabaseDomain
     [Table("Zombie")]
     public class Zombie
     {
-        [Key] public int ZombieId { get; set; }
+        [Key] 
+        public int ZombieId { get; set; }
 
-        [Required] public int Health { get; set; }
-        [Required] public string Name { get; set; }
-        [Required] public double Speed { get; set; }
+        [MaxLength(450)]
+        [Index(IsUnique = true)]
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public int Health { get; set; }
+        public int Speed { get; set; }
+
     }
 }

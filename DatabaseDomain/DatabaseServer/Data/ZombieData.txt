@@ -1,0 +1,23 @@
+﻿[
+    {
+        "ZombieId": 1,
+        "Name": "Basic Zombie",
+        "Description": "A simple, slow-moving zombie.",
+        "Health": 100,
+        "Speed": 1
+    },
+    {
+        "ZombieId": 2,
+        "Name": "Conehead Zombie",
+        "Description": "A zombie with a traffic cone on its head, slightly tougher.",
+        "Health": 150,
+        "Speed": 1
+    },
+    {
+        "ZombieId": 3,
+        "Name": "Buckethead Zombie",
+        "Description": "A zombie with a bucket on its head, even tougher.",
+        "Health": 200,
+        "Speed": 1
+    }
+]

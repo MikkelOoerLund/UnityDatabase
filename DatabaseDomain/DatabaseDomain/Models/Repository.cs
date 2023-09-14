@@ -38,6 +38,11 @@ namespace DatabaseDomain
             return _entities.Where(predicate);
         }
 
+        public TEntity First(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _entities.First(predicate);
+        }
+
         public void Add(TEntity entity)
         {
             _entities.Add(entity);

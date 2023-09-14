@@ -14,9 +14,13 @@ namespace DatabaseDomain
     {
         [Key] public int PlayerId { get; set; }
 
-        [Required] public int Balance { get; set; }
-        [Required] public string PlayTime { get; set; }
-        [Required] public string CurrentWorld { get; set; }
+        [ForeignKey("Area")]
+        public int AreaId { get; set; }
+        public int Balance { get; set; }
+
+        public string PlayTime { get; set; }
+
+        public virtual Area Area { get; set; }
     }
 
 }

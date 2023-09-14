@@ -1,0 +1,32 @@
+﻿[
+   {
+        "PlantId": 1,
+        "Name": "Peashooter",
+        "Description": "Shoots peas at zombies.",
+        "Cost": 100,
+        "Damage": 50,
+        "Recharge": 10,
+        "Range": "1x8",
+        "Toughness": "Low"
+    },
+    {
+        "PlantId": 2,
+        "Name": "Sunflower",
+        "Description": "Generates sun for your garden.",
+        "Cost": 175,
+        "Damage": 0,
+        "Recharge": 5,
+        "Range": "1x8",
+        "Toughness": "Low"
+    },
+    {
+        "PlantId": 3,
+        "Name": "Cherry Bomb",
+        "Description": "Explodes and deals massive damage to nearby zombies.",
+        "Cost": 125,
+        "Damage": 35,
+        "Recharge": 8,
+        "Range": "3x3",
+        "Toughness": "Low"
+    }
+]

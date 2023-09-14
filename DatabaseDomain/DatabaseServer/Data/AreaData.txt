@@ -1,0 +1,20 @@
+﻿[
+    {
+        "AreaId": 1,
+        "Name": "Front Yard",
+        "LevelCount": 3,
+        "Difficulty": 1
+    },
+    {
+        "AreaId": 2,
+        "Name": "Backyard",
+        "LevelCount": 5,
+        "Difficulty": 2
+    },
+    {
+        "AreaId": 3,
+        "Name": "Pool",
+        "LevelCount": 5,
+        "Difficulty": 3
+    }
+]

@@ -8,34 +8,34 @@ namespace DatabaseDomain
 {
     public class ZombieBuilder
     {
-        private Zombie _zombie;
+        //private Zombie _zombie;
 
-        public ZombieBuilder()
-        {
-            _zombie = new Zombie();
-        }
+        //public ZombieBuilder()
+        //{
+        //    _zombie = new Zombie();
+        //}
 
-        public ZombieBuilder SetHealth(int health)
-        {
-            _zombie.Health = health;
-            return this;
-        }
+        //public ZombieBuilder SetHealth(int health)
+        //{
+        //    _zombie.Health = health;
+        //    return this;
+        //}
 
-        public ZombieBuilder SetName(string name)
-        {
-            _zombie.Name = name;
-            return this;
-        }
+        //public ZombieBuilder SetName(string name)
+        //{
+        //    _zombie.Name = name;
+        //    return this;
+        //}
 
-        public ZombieBuilder SetSpeed(double speed)
-        {
-            _zombie.Speed = speed;
-            return this;
-        }
+        //public ZombieBuilder SetSpeed(string speed)
+        //{
+        //    _zombie.Speed = speed;
+        //    return this;
+        //}
 
-        public Zombie Build()
-        {
-            return _zombie;
-        }
+        //public Zombie Build()
+        //{
+        //    return _zombie;
+        //}
     }
 }

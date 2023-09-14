@@ -29,7 +29,7 @@ namespace DatabaseDomain
 
         public PlayerBuilder SetCurrentWorld(string currentWorld)
         {
-            _player.CurrentWorld = currentWorld;
+            _player.AreaId = currentWorld;
             return this;
         }
 
