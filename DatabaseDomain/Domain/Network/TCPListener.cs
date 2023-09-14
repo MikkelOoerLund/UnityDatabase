@@ -25,6 +25,9 @@ namespace Domain.Network
 
         private string GetResponse(string request)
         {
+            Console.WriteLine(request);
+
+
             if (_publisher != null)
             {
 
@@ -32,11 +35,14 @@ namespace Domain.Network
                 string responseJson = JsonConvert.SerializeObject(responseObject);
 
 
+
                 return responseJson;
             }
 
+            Console.WriteLine("Returning request");
 
-            throw new Exception($"Request {request} could not be handled");
+            return request;
+            /*throw new Exception($"Request {request} could not be handled")*/;
         }
 
         private void HandleClient(TcpClient client)
@@ -55,6 +61,7 @@ namespace Domain.Network
                     if (request == null) continue;
 
                     string response = GetResponse(request);
+
 
                     streamWriter.WriteLine(response);
                     streamWriter.Flush();

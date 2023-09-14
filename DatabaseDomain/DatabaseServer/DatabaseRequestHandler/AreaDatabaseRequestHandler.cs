@@ -25,17 +25,16 @@ namespace DatabaseServer
             if (databaseRequest.Type != typeof(Area)) return null;
 
             var data = databaseRequest.Data;
-            var id = int.Parse(data);
 
-            var response = _areaRepository.Get(id);
 
-            Console.WriteLine(response);
+
 
             switch (databaseRequest.QueryTask)
             {
-                case QueryTask.GetWithId: return response;
-                //case QueryTask.GetEntityWithName: return _areaRepository.GetAreaWithName(entity.Name);
-
+                case QueryTask.GetWithId:
+                    var id = int.Parse(data);
+                    return _areaRepository.Get(id);
+                case QueryTask.GetAll: return _areaRepository.GetAll();
 
                 default: throw new Exception();
             }

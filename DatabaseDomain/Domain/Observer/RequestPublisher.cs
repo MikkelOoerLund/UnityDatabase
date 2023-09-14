@@ -18,7 +18,7 @@ namespace Domain.Observer
                if (response != null) return response;
             }
 
-            throw new Exception($"Request {request} was not handled");
+            return null;
         }
 
     }

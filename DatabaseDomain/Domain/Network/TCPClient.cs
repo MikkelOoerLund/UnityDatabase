@@ -7,6 +7,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Domain.Network
 {
@@ -33,16 +35,23 @@ namespace Domain.Network
 
         public void WaitUntilConnected()
         {
+
             try
             {
-                _client = new TcpClient();
-                _client.Connect(_ipAddress, _port);
+                while (_client.Connected == false)
+                {
+                    _client = new TcpClient();
+                    _client.Connect(_ipAddress, _port);
+                }
             }
             catch (SocketException)
             {
-                WaitUntilConnected();
+
             }
+
+            Console.WriteLine("Connected");
         }
+
 
         public void Connect()
         {
@@ -57,7 +66,7 @@ namespace Domain.Network
             }
         }
 
-        private string RecieveResponse()
+        public string RecieveResponse()
         {
             StreamReader streamReader = new StreamReader(_client.GetStream());
             string response = streamReader.ReadLine();
@@ -79,7 +88,6 @@ namespace Domain.Network
 
         public void SendRequest(object request)
         {
-            if (IsConnected == false) Connect();
             string requestJson = JsonConvert.SerializeObject(request);
             if (requestJson == null) throw new Exception();
 
@@ -88,9 +96,6 @@ namespace Domain.Network
             streamWriter.WriteLine(requestJson);
             streamWriter.Flush();
         }
-
-
-        public bool IsConnected => _client.Connected;
 
     }
 }

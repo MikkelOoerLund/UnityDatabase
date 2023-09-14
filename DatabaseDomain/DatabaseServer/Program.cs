@@ -23,26 +23,26 @@ namespace DatabaseServer
         static void Main(string[] args)
         {
 
-            var hostApplicationBuilder = Host.CreateApplicationBuilder(args);
-            var servicesCollection = hostApplicationBuilder.Services;
+            //var hostApplicationBuilder = Host.CreateApplicationBuilder(args);
+            //var servicesCollection = hostApplicationBuilder.Services;
 
-            var connectionString = CreateConnectionString();
+            //var connectionString = CreateConnectionString();
 
-            AddDatabaseService(servicesCollection, connectionString);
-            AddDatabaseServices(servicesCollection);
+            //AddDatabaseService(servicesCollection, connectionString);
+            //AddDatabaseServices(servicesCollection);
 
-            var host = hostApplicationBuilder.Build();
-            var hostServices = host.Services;
-            var serviceScope = hostServices.CreateScope();
-            var serviceProvider = serviceScope.ServiceProvider;
+            //var host = hostApplicationBuilder.Build();
+            //var hostServices = host.Services;
+            //var serviceScope = hostServices.CreateScope();
+            //var serviceProvider = serviceScope.ServiceProvider;
 
-            CreateDatabaseDataIfNotExist(serviceProvider);
+            //CreateDatabaseDataIfNotExist(serviceProvider);
 
-            var areaRepository = serviceProvider.GetRequiredService<AreaRepository>();
+            //var areaRepository = serviceProvider.GetRequiredService<AreaRepository>();
 
             var requestPublisher = new RequestPublisher()
             {
-                new AreaDatabaseRequestHandler(areaRepository)
+                //new AreaDatabaseRequestHandler(areaRepository)
             };
 
             var listener = new TCPListener(12000, requestPublisher);

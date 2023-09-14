@@ -1,4 +1,3 @@
-using DatabaseDomain.Players;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +8,9 @@ public class LoadGameMenu : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GridSpawner _gridSpawner;
-    [SerializeField] private PlayerProfileCollection _playerProfileCollection;
+    [SerializeField] private PlayerCollection _playerProfileCollection;
 
-    private PlayerProfile[] _playerProfiles;
+    //private PlayerProfile[] _playerProfiles;
     private LoadGameButton[] _loadGameButtons;
 
     private void Start()
@@ -36,21 +35,21 @@ public class LoadGameMenu : MonoBehaviour
     }
 
 
-    private void LoadPlayerProfiles()
-    {
-        _playerProfiles = _playerProfileCollection.GetPlayers();
+    //private void LoadPlayerProfiles()
+    //{
+    //    _playerProfiles = _playerProfileCollection.GetPlayers();
 
-        int loadGameButtonsLength = _loadGameButtons.Length;
-        int playerProfilesLength = _playerProfiles.Length;
+    //    int loadGameButtonsLength = _loadGameButtons.Length;
+    //    int playerProfilesLength = _playerProfiles.Length;
 
-        int difference = loadGameButtonsLength - playerProfilesLength;
+    //    int difference = loadGameButtonsLength - playerProfilesLength;
 
-        if (difference == 0) return;
-        if (difference < 0) return;
+    //    if (difference == 0) return;
+    //    if (difference < 0) return;
 
-        Debug.Break();
+    //    Debug.Break();
 
-        _playerProfileCollection.CreatePlayerProfiles(difference);
-    }
+    //    _playerProfileCollection.CreatePlayerProfiles(difference);
+    //}
 
 }
